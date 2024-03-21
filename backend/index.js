@@ -3,6 +3,10 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const connectToDB = require("./db");
 
+const { brandRoutes} = require("../backend/routes/brandRoutes.js")
+const { influencerRoutes } = require("../backend/routes/influencerRoutes.js")
+const {voterRoutes } = require("../backend/routes/voterRoutes.js")
+
 const path = require("path");
 
 dotenv.config();
@@ -12,6 +16,11 @@ app.use(express.json());
 app.use(cors());
 
 connectToDB();
+
+app.use('/api', voterRoutes);
+app.use('/api' , influencerRoutes);
+app.use('/api' , brandRoutes);
+
 
 const PORT = process.env.PORT || 5000;
 
